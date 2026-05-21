@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成语之都 - 邯郸旅游指南</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f5f0; /* 古风米白底色 */
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 导航栏 */
+        header {
+            background-color: #2b2e3a; /* 玄青色 */
+            color: #fff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4a373; /* 古铜金 */
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        .nav-links a:hover {
+            color: #d4a373;
+            transition: color 0.3s;
+        }
+
+        /* 欢迎横幅 */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            height: 55vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            padding: 0 1rem;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            letter-spacing: 2px;
+        }
+        .hero p {
+            font-size: 1.4rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            color: #d4a373;
+        }
+
+        /* 主体内容布局 */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+        h2.section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            color: #2b2e3a;
+        }
+        h2.section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #d4a373;
+            margin: 10px auto 0;
+        }
+
+        /* 景点卡片流 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        .card-content {
+            padding: 1.5rem;
+        }
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            color: #2b2e3a;
+        }
+
+        /* 美食表格样式 */
+        .food-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .food-table th, .food-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .food-table th {
+            background-color: #2b2e3a;
+            color: #d4a373;
+        }
+        .food-table tr:hover {
+            background-color: #fcfbf9;
+        }
+
+        /* 点赞互动 */
+        .like-btn {
+            background-color: #2b2e3a;
+            color: #d4a373;
+            border: 1px solid #d4a373;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        .like-btn:hover {
+            background-color: #d4a373;
+            color: #2b2e3a;
+            transition: all 0.3s;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2b2e3a;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            .nav-links {
+                margin-top: 1rem;
+            }
+            .nav-links li {
+                margin: 0 1rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">成语之都·古韵邯郸 🏹</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#spots">寻迹古迹</a></li>
+                    <li><a href="#food">邯郸味道</a></li>
+                    <li><a href="#idiom">成语典故</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 欢迎横幅 -->
+    <div class="hero">
+        <h1>三千年未改名之城</h1>
+        <p>步履所至皆是成语，目光所及皆是历史</p>
+    </div>
+
+    <!-- 主体内容 -->
+    <main>
+        
+        <!-- 景点精选 -->
+        <section id="spots">
+            <h2 class="section-title">核心景区推荐</h2>
+            <div class="grid">
+                <!-- 广府古城 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1599572410664-2a688b14a9ec?auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="card-content">
+                        <h3>广府古城</h3>
+                        <p>中国独一无二的北方水街古城，环绕着万亩洼地稻田。这里同时也是杨氏、武氏太极拳的发祥地。</p>
+                        <button class="like-btn" onclick="addLike('guangfu')">🎯 打卡 (<span id="guangfu-count">0</span>)</button>
+                    </div>
+                </div>
+                <!-- 丛台公园 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="card-content">
+                        <h3>武灵丛台</h3>
+                        <p>邯郸古城的象征，相传始建于战国赵武灵王时期，是当年赵王检阅军队、观看歌舞的露天高台。</p>
+                        <button class="like-btn" onclick="addLike('congtai')">🎯 打卡 (<span id="congtai-count">0</span>)</button>
+                    </div>
+                </div>
+                <!-- 娲皇宫 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="card-content">
+                        <h3>涉县娲皇宫</h3>
+                        <p>中国神话中“女娲补天”的发源地，依山而建的古建筑群悬挂于摩崖峭壁之上，极为壮观。</p>
+                        <button class="like-btn" onclick="addLike('wahuang')">🎯 打卡 (<span id="wahuang-count">0</span>)</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 邯郸美食 -->
+        <section id="food">
+            <h2 class="section-title">尝尝邯郸特色</h2>
+            <table class="food-table">
+                <thead>
+                    <tr>
+                        <th>美食名称</th>
+                        <th>美食特色</th>
+                        <th>推荐理由</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>驴肉卷饼</strong></td>
+                        <td>鲜香酥脆</td>
+                        <td>好吃的程度不输保店或河间，饼皮金黄酥透，裹上秘制酱驴肉，绝了！</td>
+                    </tr>
+                    <tr>
+                        <td><strong>广府牌坊酥鱼</strong></td>
+                        <td>骨酥肉烂</td>
+                        <td>大运河和广府水洼带来的丰富淡水鱼资源，经过独门料汁慢火熏熬，连鱼刺都是酥的。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>二毛烧鸡</strong></td>
+                        <td>百年中华老字号</td>
+                        <td>创业于清代道光年间，透骨入味，肉质软嫩开胃。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 成语典故 -->
+        <section id="idiom">
+            <h2 class="section-title">成语之都的魅力</h2>
+            <div style="background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <p style="margin-bottom: 1rem; text-indent: 2em; line-height: 1.8;">
+                    据说全中国有1500余条成语都诞生在邯郸或与邯郸相关。走在邯郸街头，你脚下的路可能就是<b>“邯郸学步”</b>的发生地；远眺丛台，能想到赵武灵王<b>“胡服骑射”</b>的改革雄心。
+                </p>
+                <p style="text-indent: 2em; line-height: 1.8;">
+                    蔺相如在这条街上给廉颇让过路（<b>负荆请罪/完璧归赵</b>），毛遂在这里自荐过（<b>毛遂自荐</b>）。在这里旅行，仿佛每一分钟都在和两千多年前的古人进行一场文化对话。
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2026 邯郸旅游风采展示 | 3000年等你一回</p>
+    </footer>
+
+    <!-- 交互脚本 -->
+    <script>
+        // 点赞计数功能
+        function addLike(spotId) {
+            let currentCount = localStorage.getItem('hd_' + spotId) || 0;
+            currentCount = parseInt(currentCount) + 1;
+            localStorage.setItem('hd_' + spotId, currentCount);
+            document.getElementById(spotId + '-count').innerText = currentCount;
+        }
+
+        // 初始化
+        window.onload = function() {
+            const spots = ['guangfu', 'congtai', 'wahuang'];
+            spots.forEach(spot => {
+                const count = localStorage.getItem('hd_' + spot) || 0;
+                document.getElementById(spot + '-count').innerText = count;
+            });
+        }
+    </script>
+</body>
+</html>
